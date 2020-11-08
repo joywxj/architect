@@ -41,6 +41,24 @@
             <version>1.0-SNAPSHOT</version>
             <type>war</type>
         </dependency>
+        <dependency>
+            <groupId>com.joy</groupId>
+            <artifactId>ordermgr</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.joy</groupId>
+            <artifactId>carmgr</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.joy</groupId>
+            <artifactId>storemgr</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -80,6 +98,18 @@
                             <overlay>
                                 <groupId>com.joy</groupId>
                                 <artifacId>customer-web</artifacId>
+                            </overlay>
+                            <overlay>
+                                <groupId>com.joy</groupId>
+                                <artifacId>ordermgr</artifacId>
+                            </overlay>
+                            <overlay>
+                                <groupId>com.joy</groupId>
+                                <artifacId>carmgr</artifacId>
+                            </overlay>
+                            <overlay>
+                                <groupId>com.joy</groupId>
+                                <artifacId>storemgr</artifacId>
                             </overlay>
                         </overlays>
                     </configuration>
