@@ -1,0 +1,1 @@
+alert('这个customer1.js')

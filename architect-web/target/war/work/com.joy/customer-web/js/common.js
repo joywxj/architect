@@ -1,0 +1,1 @@
+alert('the common.js in customer-web')
