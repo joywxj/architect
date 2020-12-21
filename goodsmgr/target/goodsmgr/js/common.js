@@ -1,1 +1,0 @@
-alert('here is goodmgr common.js')
