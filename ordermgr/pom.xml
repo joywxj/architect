@@ -12,7 +12,7 @@
     <artifactId>ordermgr</artifactId>
     <packaging>war</packaging>
 
-    <name>ordermgr Maven Webapp</name>
+    <name>ordermgr</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 

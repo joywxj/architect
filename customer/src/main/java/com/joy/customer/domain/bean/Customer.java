@@ -1,5 +1,9 @@
 package com.joy.customer.domain.bean;
 
+import com.joy.common.vo.BaseModel;
+
+import java.io.Serializable;
+
 /**
  * <p>@ClassName: Customer  </p>
  * <p>@Description: 客户实体类 </p>
@@ -9,9 +13,8 @@ package com.joy.customer.domain.bean;
  * <p>@email:18772118541@163.com</p>
  */
 
-public class Customer {
-	//	uuid
-	private Integer uuid;
+public class Customer extends BaseModel<Customer> implements Serializable {
+
 	//	客户id
 	private String customerId;
 	//密码
@@ -22,14 +25,6 @@ public class Customer {
 	private String trueName;
 	//	注册时间
 	private String registerTime;
-
-	public Integer getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(Integer uuid) {
-		this.uuid = uuid;
-	}
 
 	public String getCustomerId() {
 		return customerId;
