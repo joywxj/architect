@@ -1,5 +1,8 @@
 package com.joy.order.dao;
 
+import com.joy.common.dao.BaseDao;
+import com.joy.order.domain.bean.Order;
+import com.joy.order.domain.vo.OrderQueryModel;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * <p>@email:18772118541@163.com</p>
  */
 @Repository
-public interface OrderDao {
+public interface OrderDao extends BaseDao<Order, OrderQueryModel> {
 
 }

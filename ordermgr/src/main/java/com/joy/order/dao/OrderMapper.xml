@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy.order.dao.OrderDao">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+
+    <insert id="create" parameterType="com.joy.order.domain.bean.Order">
+        INSERT INTO tbl_order
+        <!-- suffixOverrides: 前缀  -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">
+                uuid,
+            </if>
+            <if test="customerUuid != null and customerUuid != ''">
+                customerUuid,
+            </if>
+            <if test="orderTime != null and orderTime != ''">
+                orderTime,
+            </if>
+            <if test="totalMoney != null and totalMoney != ''">
+                totalMoney,
+            </if>
+            <if test="saveMoney != null and saveMoney != ''">
+                saveMoney,
+            </if>
+            <if test="state != null and state != ''">
+                state,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">
+                #{uuid},
+            </if>
+            <if test="customerUuid != null and customerUuid != ''">
+                #{customerUuid},
+            </if>
+            <if test="orderTime != null and orderTime != ''">
+                #{orderTime},
+            </if>
+            <if test="totalMoney != null and totalMoney != ''">
+                #{totalMoney},
+            </if>
+            <if test="saveMoney != null and saveMoney != ''">
+                #{saveMoney},
+            </if>
+            <if test="state != null and state != ''">
+                #{state},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <select id="list" parameterType="com.joy.order.domain.vo.OrderQueryModel"
+            resultType="com.joy.order.domain.bean.Order">
+        select * from tbl_order
+        <where>
+            1 = 1
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="customerUuid != null and customerUuid != ''">
+                and customerUuid = #{customerUuid}
+            </if>
+            <if test="orderTime != null and orderTime != ''">
+                and orderTime = #{orderTime}
+            </if>
+            <if test="totalMoney != null and totalMoney != ''">
+                and totalMoney = #{totalMoney}
+            </if>
+            <if test="saveMoney != null and saveMoney != ''">
+                and saveMoney = #{saveMoney}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        delete from tbl_order where uuid = #{uuid}
+    </delete>
+
+    <select id="get" parameterType="Integer" resultType="com.joy.order.domain.bean.Order">
+        SELECT * FROM tbl_order where uuid = #{uuid}
+    </select>
+
+    <select id="queryByConditionByPage" parameterType="com.joy.order.domain.vo.OrderQueryModel"
+            resultType="com.joy.order.domain.bean.Order">
+        SELECT * FROM tbl_order
+
+        <where>
+            1 =1
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="customerUuid != null and customerUuid != ''">
+                and customerUuid = #{customerUuid}
+            </if>
+            <if test="orderTime != null and orderTime != ''">
+                and orderTime = #{orderTime}
+            </if>
+            <if test="totalMoney != null and totalMoney != ''">
+                and totalMoney = #{totalMoney}
+            </if>
+            <if test="saveMoney != null and saveMoney != ''">
+                and saveMoney = #{saveMoney}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+
+        </where>
+
+    </select>
+    <update id="update" parameterType="com.joy.order.domain.bean.Order">
+        UPDATE tbl_customer
+
+        <set>
+
+            <trim suffixOverrides=",">
+                <if test="customerUuid != null and customerUuid != ''">
+                    customerUuid = #{customerUuid},
+                </if>
+                <if test="orderTime != null and orderTime != ''">
+                    orderTime = #{orderTime},
+                </if>
+                <if test="totalMoney != null and totalMoney != ''">
+                    totalMoney = #{totalMoney},
+                </if>
+                <if test="saveMoney != null and saveMoney != ''">
+                    saveMoney = #{saveMoney},
+                </if>
+                <if test="state != null and state != ''">
+                    state = #{state},
+                </if>
+
+            </trim>
+
+        </set>
+
+        <where>
+            uuid =#{uuid}
+        </where>
+    </update>
+</mapper>
