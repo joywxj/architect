@@ -30,8 +30,9 @@
 
         <td>操作</td>
     </tr>
+    ${page}
 
-    <c:forEach var="m" items="${lsit}">
+    <c:forEach var="m" items="${page.result}">
         <tr>
             <td>${m.customerUuid}</td>
             <td>${m.orderTime}</td>
@@ -39,8 +40,8 @@
             <td>${m.saveMoney }</td>
             <td>${m.state}</td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/toUpdate/${m.uuid}">修改 </a> |
-                <a href="${pageContext.request.contextPath}/order/toDelete/${m.uuid}">删除</a>
+                <a href="${pageContext.request.contextPath}/order/toUpate?uuid=${m.uuid}">修改 </a> |
+                <a href="${pageContext.request.contextPath}/order/delete?uuid=${m.uuid}">删除</a>
             </td>
 
         </tr>

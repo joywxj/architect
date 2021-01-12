@@ -17,7 +17,7 @@
                 </c:when>
                 <c:otherwise>
                     <a href="#" onclick="turnPage(1);" title="首页">首页</a>&nbsp;&nbsp;
-                    <a href="#" onclick="turnPage(${page.nowPage - 1});" title="上一页">上一页</a>&nbsp;&nbsp;
+                    <a href="#" onclick="turnPage(${page.nowPage} == 0 ? 1 : ${page.nowPage - 1});" title="上一页">上一页</a>&nbsp;&nbsp;
                 </c:otherwise>
             </c:choose>
             <c:choose>
@@ -34,3 +34,21 @@
         </td>
     </tr>
 </table>
+
+<script>
+    function turnPage(nowPage) {
+        var urls = window.location.href;
+        var site = urls.indexOf("?");
+        if (site > 0) {
+            urls = urls.substring(0, site);
+        }
+        urls = urls + "?nowPage=" + nowPage;
+
+        // var queryJson = document.getElementById("queryJsonStr").value;
+        // if (queryJson != null && queryJson != '') {
+        //     urls = urls + "&queryJsonStr=" + queryJson;
+        // }
+        window.location.href = urls;
+    }
+
+</script>

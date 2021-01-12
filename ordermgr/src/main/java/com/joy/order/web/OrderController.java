@@ -2,14 +2,13 @@ package com.joy.order.web;
 
 import com.joy.order.domain.bean.Order;
 import com.joy.order.domain.vo.OrderQueryModel;
+import com.joy.order.domain.vo.OrderWebModel;
 import com.joy.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
 
 /**
  * <p>@ClassName: OrderController  </p>
@@ -32,9 +31,14 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model m, OrderQueryModel oqm) {
-		List<Order> list = this.orderService.list(oqm);
-		m.addAttribute("lsit", list);
+	public String list(Model m, OrderWebModel owm) {
+		OrderQueryModel oqm = new OrderQueryModel();
+		oqm.getPage().setNowPage(owm.getNowPage());
+		if (owm.getShowPage() != 0) {
+			oqm.getPage().setPageShow(owm.getShowPage());
+		}
+		m.addAttribute("page", null);
+		m.addAttribute("page", this.orderService.queryByConditionByPage(oqm));
 		return "order/list";
 	}
 
@@ -53,10 +57,10 @@ public class OrderController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Order order) {
 		this.orderService.update(order);
-		return "order/add";
+		return "order/list";
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(Integer uuid) {
 		this.orderService.delete(uuid);
 		return "order/delete";

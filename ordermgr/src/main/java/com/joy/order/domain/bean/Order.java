@@ -19,6 +19,12 @@ public class Order extends BaseModel<Order> implements Serializable {
 	private Double saveMoney;
 	private Integer state;
 
+	@Override
+	public String toString() {
+		return "Order{" + "customerUuid=" + customerUuid + ", orderTime='" + orderTime + '\'' + ", totalMoney="
+				+ totalMoney + ", saveMoney=" + saveMoney + ", state=" + state + '}';
+	}
+
 	public Integer getCustomerUuid() {
 		return customerUuid;
 	}
