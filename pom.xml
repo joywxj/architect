@@ -24,8 +24,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -71,18 +71,22 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version><!--版本号自己选一个就行-->
+        </dependency>
         <!-- ehcache的jar -->
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-ehcache</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>net.sf.ehcache</groupId>-->
+        <!--            <artifactId>ehcache</artifactId>-->
+        <!--            <version>2.8.0</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mybatis</groupId>-->
+        <!--            <artifactId>mybatis-ehcache</artifactId>-->
+        <!--            <version>1.0.0</version>-->
+        <!--        </dependency>-->
         <!-- cglib的jar -->
         <dependency>
             <groupId>cglib</groupId>
@@ -164,17 +168,17 @@
             <artifactId>spring-tx</artifactId>
             <version>4.0.0.RELEASE</version>
         </dependency>
-        <!-- 日志的jar -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
-        </dependency>
+        <!--        &lt;!&ndash; 日志的jar &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.slf4j</groupId>-->
+        <!--            <artifactId>slf4j-api</artifactId>-->
+        <!--            <version>1.7.5</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>ch.qos.logback</groupId>-->
+        <!--            <artifactId>logback-classic</artifactId>-->
+        <!--            <version>1.0.13</version>-->
+        <!--        </dependency>-->
         <!-- mysql �?jar -->
         <dependency>
             <groupId>mysql</groupId>

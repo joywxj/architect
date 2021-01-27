@@ -30,7 +30,6 @@
 
         <td>操作</td>
     </tr>
-    ${page}
 
     <c:forEach var="m" items="${page.result}">
         <tr>
@@ -45,11 +44,10 @@
             </td>
 
         </tr>
-    </c:forEach>
+    </c:forEach>0
 
     <tr>
-        <td colspan=${5+1} align="center">
-            <input type="hidden" id="queryJsonStr" value='${wm.queryJsonStr}'/>
+        <td colspan="6" align="center">
             <myTag:page page="${page}"></myTag:page>
         </td>
     </tr>

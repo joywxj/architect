@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CustomerServiceImpl extends BaseServiceImpl<Customer, CustomerQueryModel> implements CustomerService {
+	
 	private CustomerDao dao;
 
 	@Autowired

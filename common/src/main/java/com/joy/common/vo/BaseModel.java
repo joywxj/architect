@@ -1,6 +1,7 @@
 package com.joy.common.vo;
 
 import com.joy.pageutil.Page;
+import lombok.Data;
 
 /**
  * <p>@ClassName: BaseModel  </p>
@@ -10,26 +11,10 @@ import com.joy.pageutil.Page;
  * <p>@Tel:18772118541</p>
  * <p>@email:18772118541@163.com</p>
  */
-
+@Data
 public class BaseModel<M> {
 
 	private Integer uuid;
 	private Page<M> page = new Page<M>();
-
-	public Page getPage() {
-		return page;
-	}
-
-	public void setPage(Page<M> page) {
-		this.page = page;
-	}
-
-	public Integer getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(Integer uuid) {
-		this.uuid = uuid;
-	}
 
 }

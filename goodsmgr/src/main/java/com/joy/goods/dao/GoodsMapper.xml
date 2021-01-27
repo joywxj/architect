@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy.goods.dao.GoodsDao">
+    <!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+    <insert id="create" parameterType="com.joy.goods.domain.bean.Goods">
+        INSERT INTO tbl_goods
+        <!-- suffixOverrides: 前缀  -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                imgPath,
+            </if>
+            <if test="description != null and description != ''">
+                description,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                #{imgPath},
+            </if>
+            <if test="description != null and description != ''">
+                #{description},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <select id="list" parameterType="com.joy.goods.domain.vo.GoodsQueryModel"
+            resultType="com.joy.goods.domain.bean.Goods">
+        select * from tbl_goods
+        <where>
+            1 = 1
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                and imgPath = #{imgPath}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        delete
+        from tbl_goods
+        where uuid = #{uuid}
+    </delete>
+
+    <select id="get" parameterType="Integer" resultType="com.joy.goods.domain.bean.Goods">
+        SELECT *
+        FROM tbl_goods
+        where uuid = #{uuid}
+    </select>
+
+    <select id="queryByConditionByPage" parameterType="com.joy.goods.domain.vo.GoodsQueryModel"
+            resultType="com.joy.goods.domain.bean.Goods">
+        SELECT * FROM tbl_goods
+
+        <where>
+            1 =1
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                and imgPath = #{imgPath}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="uuid != null">
+                and uuid = #{uuid}
+            </if>
+
+        </where>
+
+    </select>
+    <update id="update" parameterType="com.joy.goods.domain.bean.Goods">
+        UPDATE tbl_goods
+
+        <set>
+
+            <trim suffixOverrides=",">
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="imgPath != null and imgPath != ''">
+                    imgPath = #{imgPath},
+                </if>
+                <if test="description != null and description != ''">
+                    description = #{description},
+                </if>
+            </trim>
+
+        </set>
+
+        <where>
+            uuid =#{uuid}
+        </where>
+    </update>
+</mapper>

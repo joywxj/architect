@@ -43,7 +43,7 @@
         <property name="mapperLocations" value="classpath:com/joy/**/*Mapper.xml"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.joy.customer.dao"/>
+        <property name="basePackage" value="com.joy.store.dao"/>
         <property name="annotationClass" value="org.springframework.stereotype.Repository"></property>
     </bean>
 </beans>

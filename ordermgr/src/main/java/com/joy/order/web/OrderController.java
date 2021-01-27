@@ -4,6 +4,7 @@ import com.joy.order.domain.bean.Order;
 import com.joy.order.domain.vo.OrderQueryModel;
 import com.joy.order.domain.vo.OrderWebModel;
 import com.joy.order.service.IOrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping(value = "/order")
+@Slf4j
 public class OrderController {
 	@Autowired
 	private IOrderService orderService = null;
@@ -32,12 +34,12 @@ public class OrderController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model m, OrderWebModel owm) {
+		log.info("pageInfo：{}", owm);
 		OrderQueryModel oqm = new OrderQueryModel();
 		oqm.getPage().setNowPage(owm.getNowPage());
 		if (owm.getShowPage() != 0) {
 			oqm.getPage().setPageShow(owm.getShowPage());
 		}
-		m.addAttribute("page", null);
 		m.addAttribute("page", this.orderService.queryByConditionByPage(oqm));
 		return "order/list";
 	}
@@ -50,8 +52,9 @@ public class OrderController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(Order order) {
+
 		this.orderService.create(order);
-		return "order/success";
+		return "";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

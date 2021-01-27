@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy.store.dao.StoreDao">
+
+    <!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+
+
+    <insert id="create" parameterType="com.joy.store.domain.bean.Store">
+        INSERT INTO tbl_store
+        <!-- suffixOverrides: 前缀  -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">
+                uuid,
+            </if>
+            <if test="goodsUuid != null and goodsUuid != ''">
+                goodsUuid,
+            </if>
+            <if test="storeNum != null and storeNum != ''">
+                storeNum,
+            </if>
+
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">
+                #{uuid},
+            </if>
+            <if test="goodsUuid != null and goodsUuid != ''">
+                #{goodsUuid},
+            </if>
+            <if test="storeNum != null and storeNum != ''">
+                #{storeNum},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <select id="list" parameterType="com.joy.store.domain.vo.StoreQueryModel"
+            resultType="com.joy.store.domain.bean.Store">
+        select * from tbl_store
+        <where>
+            1 = 1
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="goodsUuid != null and goodsUuid != ''">
+                and goodsUuid = #{goodsUuid}
+            </if>
+            <if test="storeNum != null and storeNum != ''">
+                and storeNum = #{storeNum}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        delete
+        from tbl_store
+        where uuid = #{uuid}
+    </delete>
+
+    <select id="get" parameterType="Integer" resultType="com.joy.store.domain.bean.Store">
+        SELECT *
+        FROM tbl_store
+        where uuid = #{uuid}
+    </select>
+
+    <select id="queryByConditionByPage" parameterType="com.joy.store.domain.vo.StoreQueryModel"
+            resultType="com.joy.store.domain.bean.Store">
+        SELECT * FROM tbl_store
+
+        <where>
+            1 =1
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
+            </if>
+            <if test="goodsUuid != null and goodsUuid != ''">
+                and goodsUuid = #{goodsUuid}
+            </if>
+            <if test="storeNum != null and storeNum != ''">
+                and storeNum = #{storeNum}
+            </if>
+        </where>
+
+    </select>
+    <update id="update" parameterType="com.joy.store.domain.bean.Store">
+        UPDATE tbl_store
+
+        <set>
+
+            <trim suffixOverrides=",">
+                <if test="goodsUuid != null and goodsUuid != ''">
+                    goodsUuid = #{goodsUuid},
+                </if>
+                <if test="storeNum != null and storeNum != ''">
+                    storeNum = #{storeNum},
+                </if>
+            </trim>
+
+        </set>
+
+        <where>
+            uuid =#{uuid}
+        </where>
+    </update>
+</mapper>

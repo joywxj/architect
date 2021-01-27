@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joy.customer.dao.CustomerDao">
 
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+    <!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
 
 
     <insert id="create" parameterType="com.joy.customer.domain.bean.Customer">
@@ -74,11 +74,15 @@
     </select>
 
     <delete id="delete" parameterType="Integer">
-        delete from tbl_customer where uuid = #{uuid}
+        delete
+        from tbl_customer
+        where uuid = #{uuid}
     </delete>
 
     <select id="get" parameterType="Integer" resultType="com.joy.customer.domain.bean.Customer">
-        SELECT * FROM tbl_customer where uuid = #{uuid}
+        SELECT *
+        FROM tbl_customer
+        where uuid = #{uuid}
     </select>
 
     <select id="queryByConditionByPage" parameterType="com.joy.customer.domain.vo.CustomerQueryModel"
