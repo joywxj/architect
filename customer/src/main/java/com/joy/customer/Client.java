@@ -61,7 +61,7 @@ public class Client {
 		//		customerQueryModel.setPage(customerQueryModelPage);
 		list = client.getCustomerService().queryByConditionByPage(customerQueryModel).getResult();
 
-		Page<CustomerQueryModel> page = customerQueryModel.getPage();
+		Page<Customer> page = customerQueryModel.getPage();
 		System.out.println("page=====" + page);
 		for (Customer c : list) {
 			System.err.println("姓名2:" + c.getShowName());

@@ -34,6 +34,11 @@ public class StoreController {
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Model m, StoreQueryModel sqm) {
+		if (sqm.getNowPage() != null) {
+			Page<Store> queryPage = new Page<>();
+			queryPage.setNowPage(sqm.getNowPage());
+			sqm.setPage(queryPage);
+		}
 		Page<Store> page = service.queryByConditionByPage(sqm);
 		m.addAttribute("page", page);
 		return "store/list";

@@ -30,7 +30,7 @@ public class CustomerController {
 	@RequestMapping(value = "toList", method = RequestMethod.GET)
 	public String toList(@ModelAttribute("wm") CustomerQueryModel wm, Model model) {
 
-		Page<Customer> customerPage = (Page<Customer>)service.queryByConditionByPage(wm);
+		Page<Customer> customerPage = service.queryByConditionByPage(wm);
 
 		//
 		model.addAttribute("wm", wm);
