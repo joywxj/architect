@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy.customer.dao.CustomerDao">
+
+    <!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+
+
+    <insert id="create" parameterType="com.joy.customer.domain.bean.Customer">
+        INSERT INTO tbl_customer
+        <!-- suffixOverrides: 前缀  -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="customerId != null and customerId != ''">
+                customerId,
+            </if>
+            <if test="pwd != null and pwd != ''">
+                pwd,
+            </if>
+            <if test="showName != null and showName != ''">
+                showName,
+            </if>
+            <if test="trueName != null and trueName != ''">
+                trueName,
+            </if>
+            <if test="registerTime != null and registerTime != ''">
+                registerTime,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="customerId != null and customerId != ''">
+                #{customerId},
+            </if>
+            <if test="pwd != null and pwd != ''">
+                #{pwd},
+            </if>
+            <if test="showName != null and showName != ''">
+                #{showName},
+            </if>
+            <if test="trueName != null and trueName != ''">
+                #{trueName},
+            </if>
+            <if test="registerTime != null and registerTime != ''">
+                #{registerTime},
+            </if>
+        </trim>
+
+    </insert>
+
+
+    <select id="list" parameterType="com.joy.customer.domain.vo.CustomerQueryModel"
+            resultType="com.joy.customer.domain.bean.Customer">
+        select * from tbl_customer
+        <where>
+            1 = 1
+            <if test="customerId != null and customerId != ''">
+                and customerId = #{customerId}
+            </if>
+            <if test="pwd != null and pwd != ''">
+                and pwd = #{pwd}
+            </if>
+            <if test="showName != null and showName != ''">
+                and showName = #{showName}
+            </if>
+            <if test="trueName != null and trueName != ''">
+                and trueName = #{trueName}
+            </if>
+            <if test="registerTime != null and registerTime != ''">
+                and registerTime = #{registerTime}
+            </if>
+            <if test="uuid != null">
+                and uuid = #{uuid}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="Integer">
+        delete
+        from tbl_customer
+        where uuid = #{uuid}
+    </delete>
+
+    <select id="get" parameterType="Integer" resultType="com.joy.customer.domain.bean.Customer">
+        SELECT *
+        FROM tbl_customer
+        where uuid = #{uuid}
+    </select>
+
+    <select id="queryByConditionByPage" parameterType="com.joy.customer.domain.vo.CustomerQueryModel"
+            resultType="com.joy.customer.domain.bean.Customer">
+        SELECT * FROM tbl_customer
+
+        <where>
+            1 =1
+            <if test="customerId != null and customerId != ''">
+                and customerId = #{customerId}
+            </if>
+            <if test="pwd != null and pwd != ''">
+                and pwd = #{pwd}
+            </if>
+            <if test="showName != null and showName != ''">
+                and showName = #{showName}
+            </if>
+            <if test="trueName != null and trueName != ''">
+                and trueName = #{trueName}
+            </if>
+            <if test="registerTime != null and registerTime != ''">
+                and registerTime = #{registerTime}
+            </if>
+            <if test="uuid != null">
+                and uuid = #{uuid}
+            </if>
+
+        </where>
+
+    </select>
+    <update id="update" parameterType="com.joy.customer.domain.bean.Customer">
+        UPDATE tbl_customer
+
+        <set>
+
+            <trim suffixOverrides=",">
+                <if test="customerId != null and customerId != ''">
+                    customerId = #{customerId},
+                </if>
+                <if test="pwd != null and pwd != ''">
+                    pwd = #{pwd},
+                </if>
+                <if test="showName != null and showName != ''">
+                    showName = #{showName},
+                </if>
+                <if test="trueName != null and trueName != ''">
+                    trueName = #{trueName},
+                </if>
+                <if test="registerTime != null and registerTime != ''">
+                    registerTime = #{registerTime},
+                </if>
+
+            </trim>
+
+        </set>
+
+        <where>
+            uuid =#{uuid}
+        </where>
+    </update>
+</mapper>
